@@ -1,0 +1,106 @@
+{
+  "atomCode": "artifact-promote",
+  "name": "Promote artifact",
+  "version": "1.0.0",
+  "description": "Copies artifacts from one repository to another and verifies them by digest.",
+  "execution": {
+    "packagePath": "artifact-promote.jar",
+    "language": "java",
+    "target": "$atom_java_path -cp artifact-promote.jar com.jenkinschina.atom.sdk.AtomRunner"
+  },
+  "input": {
+    "sourceUrl": {
+      "label": "来源仓库地址",
+      "type": "vuex-input",
+      "default": ""
+    },
+    "sourceRepository": {
+      "label": "来源仓库（staging）",
+      "type": "vuex-input",
+      "default": ""
+    },
+    "sourceUsername": {
+      "label": "来源用户名",
+      "type": "vuex-input",
+      "default": ""
+    },
+    "sourceToken": {
+      "label": "来源密码 / token",
+      "type": "password",
+      "default": ""
+    },
+    "targetUrl": {
+      "label": "目标仓库地址",
+      "type": "vuex-input",
+      "default": ""
+    },
+    "targetRepository": {
+      "label": "目标仓库（release）",
+      "type": "vuex-input",
+      "default": ""
+    },
+    "targetUsername": {
+      "label": "目标用户名",
+      "type": "vuex-input",
+      "default": ""
+    },
+    "targetToken": {
+      "label": "目标密码 / token",
+      "type": "password",
+      "default": ""
+    },
+    "paths": {
+      "label": "要提升的路径（逗号分隔）",
+      "type": "textarea",
+      "default": ""
+    },
+    "targetPath": {
+      "label": "目标目录（留空则用原路径）",
+      "type": "vuex-input",
+      "default": ""
+    },
+    "verify": {
+      "label": "回读校验（比较 sha256）",
+      "type": "checkbox",
+      "default": "true"
+    },
+    "deleteSource": {
+      "label": "提升后删除来源",
+      "type": "checkbox",
+      "default": "false"
+    },
+    "timeoutSeconds": {
+      "label": "超时（秒）",
+      "type": "vuex-input",
+      "default": "120"
+    }
+  },
+  "output": {
+    "promoted": {
+      "type": "string",
+      "description": "提升的文件数"
+    },
+    "bytes": {
+      "type": "string",
+      "description": "字节数"
+    },
+    "targetRepository": {
+      "type": "string",
+      "description": "目标仓库"
+    },
+    "artifacts": {
+      "type": "string",
+      "description": "目标路径列表"
+    },
+    "verified": {
+      "type": "string",
+      "description": "是否做了回读校验"
+    }
+  },
+  "x-jenkins": {
+    "protocol": "jenkins-1",
+    "requires": {
+      "runner": ">=0.4.0"
+    }
+  }
+}

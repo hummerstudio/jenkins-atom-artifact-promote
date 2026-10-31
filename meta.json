@@ -1,0 +1,12 @@
+{
+  "name": "Promote artifact",
+  "summary": "Copies artifacts from one repository to another and verifies them by digest.",
+  "author": "hummerstudio",
+  "license": "MIT",
+  "tags": [
+    "official-port",
+    "artifacts",
+    "release"
+  ],
+  "homepage": "https://github.com/hummerstudio/jenkins-atom-artifact-promote"
+}

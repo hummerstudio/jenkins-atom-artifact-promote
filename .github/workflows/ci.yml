@@ -37,4 +37,4 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: artifact-promote-atom
-          path: atom/dist/artifact-promote/
+          path: atom/target/dist/artifact-promote/

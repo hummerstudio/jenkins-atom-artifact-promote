@@ -13,5 +13,5 @@ release，内容不变」。用普通 HTTP 做，意味着 Artifactory、Nexus �
 - 回读不一致 → `THIRD_PART`
 
 ```bash
-./build.sh && ./tools/smoke.sh
+mvn verify
 ```

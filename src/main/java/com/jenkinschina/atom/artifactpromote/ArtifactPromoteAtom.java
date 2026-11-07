@@ -14,6 +14,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Base64;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -196,6 +197,26 @@ public class ArtifactPromoteAtom implements AtomTask {
     }
 
     private record Reply(int status, byte[] bytes) {
+        @Override
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            return other instanceof Reply reply
+                    && status == reply.status
+                    && Arrays.equals(bytes, reply.bytes);
+        }
+
+        @Override
+        public int hashCode() {
+            return 31 * Integer.hashCode(status) + Arrays.hashCode(bytes);
+        }
+
+        @Override
+        public String toString() {
+            return "Reply[status=" + status + ", bytes=" + Arrays.toString(bytes) + "]";
+        }
+
         boolean ok() {
             return status >= 200 && status < 300;
         }
